@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sai Deshik Sandakacharla — Security Engineer</title>
+<meta name="description" content="Security engineer working on cloud security, detection engineering, and the defense of AI and LLM workloads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0D1522;
+    --ink-soft:#2A3A4E;
+    --ink-faint:#5C6E82;
+    --slate:#D7DEE2;
+    --slate-deep:#C3CDD3;
+    --card:#F4F7F8;
+    --verdigris:#166B62;
+    --verdigris-lift:#1E8C80;
+    --signal:#A32A22;
+    --amber:#8A6212;
+    --rule:rgba(13,21,34,.14);
+
+    --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+    --body:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+    --pad:clamp(20px,5vw,72px);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--slate);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(180deg,#E2E8EB 0%,var(--slate) 45%,var(--slate-deep) 100%);
+    background-attachment:fixed;
+  }
+  a{color:inherit}
+  h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:1.02;margin:0}
+  p{margin:0 0 1em}
+
+  .label{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+
+  /* ---------- top bar ---------- */
+  header{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter:blur(10px);
+    background:rgba(215,222,226,.82);
+    border-bottom:1px solid var(--rule);
+  }
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}
+  .mark{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.04em}
+  .pip{width:9px;height:9px;border-radius:50%;background:var(--verdigris);box-shadow:0 0 0 4px rgba(22,107,98,.16)}
+  nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+  nav a{
+    font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;
+    text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+    padding-bottom:3px;border-bottom:1px solid transparent;
+  }
+  nav a:hover,nav a:focus-visible{color:var(--verdigris);border-bottom-color:var(--verdigris)}
+  @media(max-width:820px){nav{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(48px,8vw,104px) 0 clamp(40px,6vw,72px)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:end}
+  @media(max-width:940px){.hero-grid{grid-template-columns:1fr;align-items:start}}
+
+  .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:26px}
+  .eyebrow .dash{height:1px;width:44px;background:var(--ink);opacity:.35}
+
+  h1{
+    font-size:clamp(44px,8.4vw,92px);
+    letter-spacing:-.04em;
+    text-wrap:balance;
+  }
+  h1 .surname{display:block;color:var(--verdigris)}
+  .lede{
+    font-size:clamp(17px,1.9vw,21px);
+    color:var(--ink-soft);
+    max-width:34ch;
+    margin-top:24px;
+  }
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .chip{
+    font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+    padding:7px 13px;border:1px solid var(--rule);border-radius:999px;
+    background:rgba(255,255,255,.5);text-decoration:none;
+    transition:background .18s ease,border-color .18s ease,color .18s ease;
+  }
+  a.chip:hover,a.chip:focus-visible{background:var(--ink);color:#F4F7F8;border-color:var(--ink)}
+
+  /* ---------- console (signature) ---------- */
+  .console{
+    background:var(--ink);
+    color:#DCE6E4;
+    border-radius:4px;
+    padding:20px 22px 18px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    line-height:1.75;
+    box-shadow:0 24px 50px -28px rgba(13,21,34,.7);
+  }
+  .console-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-bottom:12px;margin-bottom:14px;
+    border-bottom:1px solid rgba(220,230,228,.16);
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7E93A0;
+  }
+  .live{display:flex;align-items:center;gap:7px;color:#5FBFAE}
+  .live i{width:7px;height:7px;border-radius:50%;background:#5FBFAE;display:inline-block;animation:blink 2.4s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  .row{display:grid;grid-template-columns:64px 1fr 72px;gap:12px;padding:5px 0;opacity:.28;transition:opacity .45s ease}
+  .row.on{opacity:1}
+  .row .sev{font-weight:600}
+  .sev.high{color:#E4756A}
+  .sev.med{color:#D9A441}
+  .sev.low{color:#7E93A0}
+  .row .verdict{text-align:right;color:#5FBFAE}
+  .row.pending .verdict{color:#4E6272}
+  .console-foot{
+    margin-top:14px;padding-top:12px;
+    border-top:1px solid rgba(220,230,228,.16);
+    display:flex;justify-content:space-between;color:#7E93A0;font-size:11.5px;
+  }
+  .console-foot b{color:#DCE6E4;font-weight:600}
+
+  /* ---------- impact strip ---------- */
+  .strip{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:34px 0}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  @media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr);gap:24px}}
+  .stat .n{font-family:var(--display);font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1}
+  .stat .n span{color:var(--verdigris)}
+  .stat .t{margin-top:8px;font-size:14px;color:var(--ink-soft);line-height:1.45;max-width:24ch}
+
+  /* ---------- sections ---------- */
+  section{padding:clamp(56px,8vw,96px) 0}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:44px;flex-wrap:wrap}
+  .sec-head h2{font-size:clamp(28px,4.4vw,42px)}
+  .sec-head .note{color:var(--ink-faint);margin-left:auto;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:640px){.sec-head .note{margin-left:0}}
+
+  /* timeline */
+  .track{border-left:1px solid var(--rule);margin-left:6px}
+  .job{position:relative;padding:0 0 52px 34px}
+  .job:last-child{padding-bottom:0}
+  .job::before{
+    content:"";position:absolute;left:-5px;top:9px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--slate);border:2px solid var(--verdigris);
+  }
+  .job.past::before{border-color:var(--ink-faint)}
+  .job-top{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
+  .job h3{font-size:clamp(20px,2.6vw,25px);font-weight:700;letter-spacing:-.02em}
+  .org{font-family:var(--mono);font-size:13px;color:var(--verdigris);margin-top:6px;font-weight:500}
+  .when{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.05em;white-space:nowrap}
+  ul.pts{list-style:none;padding:0;margin:18px 0 0}
+  ul.pts li{position:relative;padding-left:20px;margin-bottom:11px;color:var(--ink-soft);font-size:15.5px}
+  ul.pts li::before{
+    content:"";position:absolute;left:0;top:.68em;
+    width:8px;height:1px;background:var(--verdigris);
+  }
+  ul.pts strong{color:var(--ink);font-weight:600}
+
+  /* projects */
+  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:960px){.projects{grid-template-columns:1fr}}
+  .proj{
+    background:var(--card);border:1px solid var(--rule);border-radius:3px;
+    padding:26px 24px 24px;display:flex;flex-direction:column;
+    transition:transform .22s ease,box-shadow .22s ease;
+  }
+  .proj:hover{transform:translateY(-3px);box-shadow:0 18px 34px -22px rgba(13,21,34,.55)}
+  .domain{
+    font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--verdigris);
+    padding-bottom:14px;margin-bottom:16px;border-bottom:1px solid var(--rule);
+  }
+  .proj h3{font-size:21px;letter-spacing:-.02em;font-weight:700}
+  .proj .sub{font-size:14px;color:var(--ink-faint);margin-top:6px}
+  .proj ul.pts{margin-top:16px;flex:1}
+  .proj ul.pts li{font-size:14.5px;margin-bottom:9px}
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;padding-top:16px;border-top:1px solid var(--rule)}
+  .stack span{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:rgba(13,21,34,.055);padding:4px 8px;border-radius:2px}
+
+  /* skills */
+  .kit{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px}
+  @media(max-width:820px){.kit{grid-template-columns:1fr}}
+  .kit-row{padding:20px 0;border-top:1px solid var(--rule)}
+  .kit-row .label{display:block;margin-bottom:9px;color:var(--ink)}
+  .kit-row p{margin:0;font-size:15px;color:var(--ink-soft)}
+
+  /* credentials */
+  .creds{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,56px)}
+  @media(max-width:820px){.creds{grid-template-columns:1fr}}
+  .cert{display:flex;gap:14px;align-items:baseline;padding:15px 0;border-top:1px solid var(--rule)}
+  .cert .tick{font-family:var(--mono);font-size:11px;color:var(--verdigris);letter-spacing:.1em}
+  .cert b{font-weight:600}
+  .cert em{font-style:normal;color:var(--ink-faint);font-size:14px;display:block;margin-top:2px}
+  .edu{background:var(--card);border:1px solid var(--rule);padding:28px 26px;border-radius:3px;align-self:start}
+  .edu h3{font-size:22px;margin-bottom:6px}
+  .edu .when{display:block;margin-top:14px}
+
+  /* contact */
+  .contact{background:var(--ink);color:#DCE6E4;border-radius:4px;padding:clamp(34px,5vw,60px);margin-bottom:clamp(56px,8vw,96px)}
+  .contact h2{font-size:clamp(30px,5vw,50px);color:#F4F7F8;max-width:16ch}
+  .contact p{color:#9DB0BC;max-width:46ch;margin-top:18px}
+  .contact-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .contact-links a{
+    font-family:var(--mono);font-size:13px;text-decoration:none;
+    padding:12px 20px;border:1px solid rgba(220,230,228,.28);border-radius:999px;
+    transition:background .18s ease,color .18s ease,border-color .18s ease;
+  }
+  .contact-links a:hover,.contact-links a:focus-visible{background:var(--verdigris-lift);border-color:var(--verdigris-lift);color:#04120F}
+  .contact-links a.primary{background:#F4F7F8;color:var(--ink);border-color:#F4F7F8}
+  .contact-links a.primary:hover{background:var(--verdigris-lift);border-color:var(--verdigris-lift);color:#04120F}
+
+  footer{padding:0 0 44px;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  /* motion */
+  .rise{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .rise.seen{opacity:1;transform:none}
+
+  :focus-visible{outline:2px solid var(--verdigris);outline-offset:3px}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .rise{opacity:1;transform:none}
+    .row{opacity:1}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="mark"><span class="pip" aria-hidden="true"></span> S. SANDAKACHARLA</div>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#toolkit">Toolkit</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="dash" aria-hidden="true"></span>
+          <span class="label">Security Engineer · Cloud &amp; AI Defense</span>
+        </div>
+        <h1>Sai Deshik<span class="surname">Sandakacharla</span></h1>
+        <p class="lede">I secure cloud and AI workloads — writing the detections, closing the misconfigurations, and answering the alerts that follow.</p>
+        <div class="meta">
+          <a class="chip" href="mailto:saideshik195@gmail.com">saideshik195@gmail.com</a>
+          <a class="chip" href="https://github.com/Saideshik" target="_blank" rel="noopener">github.com/Saideshik</a>
+          <span class="chip">USA · open to relocate</span>
+        </div>
+      </div>
+
+      <div class="console" id="console" aria-label="Illustration of a security alert queue">
+        <div class="console-head">
+          <span>alert queue · triage</span>
+          <span class="live"><i aria-hidden="true"></i>live</span>
+        </div>
+        <div id="rows">
+          <div class="row" data-i="1"><span class="sev high">HIGH</span><span>iam:role assumed from new region</span><span class="verdict">contained</span></div>
+          <div class="row" data-i="2"><span class="sev med">MED</span><span>prompt-injection pattern · model API</span><span class="verdict">blocked</span></div>
+          <div class="row" data-i="3"><span class="sev high">HIGH</span><span>s3 bucket policy drift detected</span><span class="verdict">remediated</span></div>
+          <div class="row" data-i="4"><span class="sev low">LOW</span><span>failed auth burst · corp vpn</span><span class="verdict">benign</span></div>
+          <div class="row pending" data-i="5"><span class="sev med">MED</span><span>credential in build log · CI stage</span><span class="verdict">triaging…</span></div>
+        </div>
+        <div class="console-foot">
+          <span>false positives <b>&minus;25%</b></span>
+          <span>mean time to acknowledge <b>&minus;40%</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPACT -->
+  <div class="strip">
+    <div class="wrap stats">
+      <div class="stat rise">
+        <div class="n">4<span>+</span></div>
+        <div class="t">years across SOC operations, detection engineering, and cloud security</div>
+      </div>
+      <div class="stat rise">
+        <div class="n">25<span>%</span></div>
+        <div class="t">fewer high-risk findings reaching release</div>
+      </div>
+      <div class="stat rise">
+        <div class="n">30<span>%</span></div>
+        <div class="t">faster detection on cloud security events</div>
+      </div>
+      <div class="stat rise">
+        <div class="n">120<span>+</span></div>
+        <div class="t">AWS and Kubernetes assets under detection coverage</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <h2>Experience</h2>
+        <span class="note">2021 → present</span>
+      </div>
+
+      <div class="track">
+        <article class="job rise">
+          <div class="job-top">
+            <div>
+              <h3>Cyber Security Threat Management Engineer</h3>
+              <div class="org">Walmart Global Tech · USA</div>
+            </div>
+            <div class="when">Jun 2025 — Present</div>
+          </div>
+          <ul class="pts">
+            <li>Protected an <strong>AI/ML AWS platform</strong> with least-privilege IAM, KMS encryption, and centralized logging, eliminating high-risk misconfigurations across enterprise workloads.</li>
+            <li>Cut high-risk security findings <strong>25%</strong> before release by assessing model APIs and data pipelines for prompt injection, data leakage, and over-permissioned access.</li>
+            <li>Monitored cloud and AI environments in <strong>Microsoft Sentinel</strong> and Abnormal AI email security, responding to phishing and email threats in real time.</li>
+            <li>Automated cloud security validation with <strong>Python</strong> checks wired into <strong>GitHub Actions</strong>, catching vulnerable configurations and exposed secrets pre-deploy.</li>
+            <li>Mapped AI workload threats to <strong>MITRE ATT&amp;CK and ATLAS</strong>, prioritizing detections for prompt injection and model API abuse across LLM and agentic systems.</li>
+            <li>Reviewed <strong>RAG</strong> and agentic data flows with engineering partners, recommending guardrails that prevent PHI/PII exposure.</li>
+          </ul>
+        </article>
+
+        <article class="job past rise">
+          <div class="job-top">
+            <div>
+              <h3>Cyber Security Threat Management Engineer</h3>
+              <div class="org">Capgemini · India</div>
+            </div>
+            <div class="when">Apr 2023 — Jul 2024</div>
+          </div>
+          <ul class="pts">
+            <li>Hardened enterprise <strong>AWS</strong> environments by reviewing IAM policies, tightening security groups, and enforcing encryption and access-control baselines.</li>
+            <li>Triaged cloud events through <strong>CloudTrail and GuardDuty</strong>, cutting detection time <strong>30%</strong> in a high-volume SOC.</li>
+            <li>Documented AI/ML risks on model endpoints and data exposure, enabling prioritized remediation against <strong>CIS Benchmarks and NIST CSF</strong>.</li>
+            <li>Built <strong>Python</strong> automation for configuration compliance and vulnerability tracking, raising vulnerability visibility <strong>40%</strong>.</li>
+            <li>Advised engineering teams on least-privilege IAM, encryption, and logging for secure AI and cloud deployments.</li>
+          </ul>
+        </article>
+
+        <article class="job past rise">
+          <div class="job-top">
+            <div>
+              <h3>Security Analyst</h3>
+              <div class="org">Capgemini · India</div>
+            </div>
+            <div class="when">May 2021 — Apr 2023</div>
+          </div>
+          <ul class="pts">
+            <li>Ran detection engineering and incident response for <strong>120+ AWS and Kubernetes assets</strong>, mitigating high-severity threats with IDS/IPS tooling.</li>
+            <li>Refined <strong>Splunk and ELK</strong> detection rules, reducing false positives <strong>25%</strong> without losing coverage on critical threats.</li>
+            <li>Integrated <strong>Snyk and SonarQube</strong> into Jenkins pipelines, stopping 90% of critical vulnerabilities before production.</li>
+            <li>Led post-incident analysis and configuration reviews against CIS Benchmarks, improving remediation SLA adherence <strong>20%</strong>.</li>
+            <li>Triaged <strong>CrowdStrike EDR</strong> alerts end to end, escalating and coordinating containment during live threat hunts.</li>
+            <li>Owned Windows patch management in <strong>MECM</strong>, prioritizing high-risk CVEs and tracking remediation enterprise-wide.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <h2>Projects</h2>
+        <span class="note">built &amp; shipped</span>
+      </div>
+
+      <div class="projects">
+        <article class="proj rise">
+          <div class="domain">AI security</div>
+          <h3>RetailGuard</h3>
+          <div class="sub">Secure retail RAG assistant</div>
+          <ul class="pts">
+            <li>Retrieval-augmented assistant over product and customer data, serving grounded LLM responses through FastAPI.</li>
+            <li>PII redaction, prompt-injection detection, and out-of-scope blocking cut unsafe responses <strong>90%</strong>.</li>
+            <li>CloudWatch instrumentation on every API call and security event for real-time alerting.</li>
+          </ul>
+          <div class="stack"><span>Python</span><span>FastAPI</span><span>FAISS</span><span>BM25</span><span>AWS CloudWatch</span></div>
+        </article>
+
+        <article class="proj rise">
+          <div class="domain">Detection &amp; response</div>
+          <h3>ThreatWatch</h3>
+          <div class="sub">AI-driven SOC dashboard</div>
+          <ul class="pts">
+            <li>Detection pipeline ingesting live Windows telemetry via Sysmon and Wazuh into a FastAPI backend.</li>
+            <li>LLM-generated analyst guidance per alert, with SHA-256 deduplication and a 500-alert memory cap — <strong>35%</strong> efficiency gain.</li>
+            <li>React frontend on server-sent events dropped mean time to acknowledge <strong>40%</strong>.</li>
+          </ul>
+          <div class="stack"><span>Python</span><span>FastAPI</span><span>Wazuh</span><span>React</span><span>SSE</span></div>
+        </article>
+
+        <article class="proj rise">
+          <div class="domain">Compliance automation</div>
+          <h3>Config Drift Auditor</h3>
+          <div class="sub">Baseline &amp; compliance scanner</div>
+          <ul class="pts">
+            <li>Audits server configuration against Ansible baselines — <strong>120+ hosts in under 90 seconds</strong>.</li>
+            <li>Exports findings as Prometheus metrics for continuous compliance monitoring and drift alerting.</li>
+            <li>Shipped as a Docker container, removing <strong>75%</strong> of manual compliance checks.</li>
+          </ul>
+          <div class="stack"><span>Python</span><span>Ansible</span><span>Prometheus</span><span>Docker</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLKIT -->
+  <section id="toolkit">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <h2>Toolkit</h2>
+        <span class="note">day-to-day</span>
+      </div>
+      <div class="kit">
+        <div class="kit-row rise"><span class="label">Security</span><p>Threat detection, incident response, vulnerability management, application security, IAM, patch management (MECM/SCCM)</p></div>
+        <div class="kit-row rise"><span class="label">Detection platforms</span><p>Splunk, ELK, Microsoft Sentinel, CrowdStrike, Microsoft Defender, Wazuh, Sysmon</p></div>
+        <div class="kit-row rise"><span class="label">Cloud &amp; infrastructure</span><p>AWS (IAM, KMS, CloudTrail, GuardDuty, CloudWatch), Azure, Docker, Kubernetes, Ansible</p></div>
+        <div class="kit-row rise"><span class="label">AI / LLM systems</span><p>LLM security, RAG, prompt engineering, agentic AI, OpenAI API, MITRE ATLAS</p></div>
+        <div class="kit-row rise"><span class="label">Languages</span><p>Python, Bash, PowerShell, SQL, Java, TypeScript, JavaScript</p></div>
+        <div class="kit-row rise"><span class="label">Observability</span><p>Prometheus, Grafana, AWS CloudWatch, OpenTelemetry</p></div>
+        <div class="kit-row rise"><span class="label">Networking</span><p>TCP/IP, DNS, firewall rule review, VPN, IDS/IPS, network monitoring</p></div>
+        <div class="kit-row rise"><span class="label">Systems &amp; engineering</span><p>Windows Server, Linux (Ubuntu, RHEL), REST APIs, microservices, distributed systems, concurrency</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <h2>Credentials</h2>
+        <span class="note">certified &amp; studied</span>
+      </div>
+      <div class="creds">
+        <div class="rise">
+          <div class="cert"><span class="tick">CERT</span><div><b>AWS Certified Security — Specialty</b></div></div>
+          <div class="cert"><span class="tick">CERT</span><div><b>CompTIA Security+</b></div></div>
+          <div class="cert"><span class="tick">COURSE</span><div><b>Ethical Hacking</b><em>Udemy — certificate of completion</em></div></div>
+          <div class="cert"><span class="tick">COURSE</span><div><b>Bug Bounty Hunter &amp; Security Tester</b><em>Udemy — certificate of completion</em></div></div>
+          <div class="cert"><span class="tick">COURSE</span><div><b>Regular Expressions in Python</b><em>Coursera</em></div></div>
+        </div>
+        <div class="edu rise">
+          <span class="label">Education</span>
+          <h3 style="margin-top:12px">Saint Louis University</h3>
+          <p style="margin:8px 0 0;color:var(--ink-soft)">Master's in Cybersecurity — GPA 3.9</p>
+          <span class="when">Aug 2024 — May 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="wrap">
+    <div class="contact rise" id="contact">
+      <h2>Open to security engineering roles.</h2>
+      <p>Cloud security, detection engineering, DevSecOps, and AI/LLM workload defense. Happy to talk through any of the work above.</p>
+      <div class="contact-links">
+        <a class="primary" href="mailto:saideshik195@gmail.com">Email me</a>
+        <a href="tel:+13148280586">+1 (314) 828-0586</a>
+        <a href="https://github.com/Saideshik" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Sai Deshik Sandakacharla</span>
+    <span>USA · open to relocate</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reveal on scroll
+  var items = document.querySelectorAll('.rise');
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('seen'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('seen'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  // Alert queue resolving, once on load
+  var rows = document.querySelectorAll('#rows .row');
+  if (reduce) {
+    rows.forEach(function(r){ r.classList.add('on'); });
+  } else {
+    rows.forEach(function(r, i){
+      setTimeout(function(){ r.classList.add('on'); }, 420 + i * 260);
+    });
+  }
+})();
+</script>
+</body>
+</html>
